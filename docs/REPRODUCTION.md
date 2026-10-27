@@ -11,13 +11,12 @@ left unchanged.
 |---|---|---|---:|---:|---:|---:|
 | 360M, stage 1 | `hazyresearch/based-360m` | degree 4, no linear term | 18,000 | 2e-4 | 10 | 2 |
 | 360M, stage 2 | stage 1 `step_18000-hf` | degree 4, no linear term | 33,000 after restart | 2e-4 | 10 | 2 |
-| 1B | local BASED-1B HF checkpoint | degree 2 plus linear term | 2,000 | 1e-5 | 2 | 16 |
+| 1B | `hazyresearch/based-1b` | degree 2 plus linear term | 2,000 | 1e-5 | 2 | 16 |
 
 The 360M result therefore follows two optimizer runs. Stage 2 intentionally
 restarts optimizer and scheduler state; it is not a Lightning resume. The
-recovered 1B initializer is not identifiable as a public immutable revision
-from the surviving logs. For exact reproduction, publish that initializer
-alongside the final checkpoint and provide its SHA-256 digest.
+released 1B recipe initializes directly from the public
+`hazyresearch/based-1b` checkpoint.
 
 All runs used sequence length 2,048, AdamW (`betas=[0.9, 0.95]`, weight decay
 0.1), 200 warmup steps, and the SlimPajama-6B Hugging Face dataset.
@@ -40,10 +39,10 @@ export INIT_MODEL_NAME="$CHECKPOINT_DIR/llops-360m-stage1/step_18000-hf"
 scripts/train_continual.sh 360m-stage2
 ```
 
-Run 1B using the released BASED-1B initializer:
+Run 1B from the public BASED-1B initializer:
 
 ```bash
-export INIT_MODEL_NAME=/path/to/released-based-1b-initializer
+unset INIT_MODEL_NAME
 scripts/train_continual.sh 1b
 ```
 

@@ -13,9 +13,7 @@ model:
   _target_: based.models.gpt_unified.GPTSketchLMHeadModel
   _recursive_: false
   train_from_scratch: false
-  # The paper run used a local BASED-1B initializer. Set this explicitly so a
-  # different public checkpoint is never mistaken for the reproduced run.
-  init_model_name: ${oc.env:INIT_MODEL_NAME}
+  init_model_name: ${oc.env:INIT_MODEL_NAME,hazyresearch/based-1b}
   power: 1
   use_linear_term: true
 

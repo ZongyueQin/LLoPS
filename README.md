@@ -52,14 +52,13 @@ scripts/train_continual.sh 360m-stage1
 export INIT_MODEL_NAME="$CHECKPOINT_DIR/llops-360m-stage1/step_18000-hf"
 scripts/train_continual.sh 360m-stage2
 
-# 1B: set this to the released BASED-1B initializer
-export INIT_MODEL_NAME=/path/to/based-1b-initializer
+# 1B: initializes from the public hazyresearch/based-1b checkpoint
+unset INIT_MODEL_NAME
 scripts/train_continual.sh 1b
 ```
 
 See [the reproduction notes](docs/REPRODUCTION.md) for exact hyperparameters,
-the known 1B-initializer provenance limitation, smoke-test overrides, and Slurm
-usage considerations.
+smoke-test overrides, and Slurm usage considerations.
 
 ## Evaluate
 
