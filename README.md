@@ -1,8 +1,10 @@
 # LLoPS: Learnable Low-Rank Polynomial Sketches
 
+[![arXiv](https://img.shields.io/badge/arXiv-2610.14219-b31b1b.svg)](https://arxiv.org/abs/2610.14219)
+
 This repository contains the language-model implementation and continual-
-training pipeline for **Learnable Low-Rank Polynomial Sketch for Effective
-Linear Attention (LLoPS)**. It converts pretrained BASED linear-attention
+training pipeline for [**Learnable Low-Rank Polynomial Sketch for Effective
+Linear Attention (LLoPS)**](https://arxiv.org/abs/2610.14219). It converts pretrained BASED linear-attention
 layers into trainable polynomial sketches, continues training on
 SlimPajama-6B, saves Hugging Face-format checkpoints, and evaluates the
 paper's nine zero-shot NLP tasks.
