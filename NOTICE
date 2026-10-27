@@ -1,0 +1,12 @@
+LLoPS code release
+
+This repository is derived from HazyResearch/based:
+https://github.com/HazyResearch/based
+
+The evaluation/ directory vendors a modified copy of EleutherAI's Language
+Model Evaluation Harness and retains the notices and license distributed with
+that project.
+
+The original projects and their contributors retain copyright in their
+respective work. Modifications add the LLoPS model, continual-training
+experiments, checkpoint metadata, and reproduction documentation.

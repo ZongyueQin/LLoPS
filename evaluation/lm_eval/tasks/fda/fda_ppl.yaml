@@ -1,0 +1,17 @@
+task: fda_ppl
+dataset_path: hazyresearch/based-fda
+dataset_name: default
+output_type: loglikelihood_rolling
+validation_split: validation
+
+doc_to_text: ""
+doc_to_target: "{{text}}"
+process_results: !function task.process_macro_token_perplexity
+
+metric_list:
+  - metric: macro_token_perplexity
+    aggregation: mean
+    higher_is_better: false
+
+metadata:
+  version: 1.0

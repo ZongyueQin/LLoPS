@@ -1,0 +1,13 @@
+# @package _global_
+# Paper reproduction, stage 2. INIT_MODEL_NAME must be stage 1 step_18000-hf.
+# Optimizer/scheduler state is intentionally restarted, matching the recovered run.
+defaults:
+  - /experiment/llops/continual_360m_stage1.yaml
+
+name: llops-360m-stage2
+
+model:
+  init_model_name: ${oc.env:INIT_MODEL_NAME}
+
+trainer:
+  max_steps: 33000

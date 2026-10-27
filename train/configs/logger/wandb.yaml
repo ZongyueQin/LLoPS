@@ -1,0 +1,15 @@
+# https://wandb.ai
+
+wandb:
+  _target_: pytorch_lightning.loggers.wandb.WandbLogger
+  project: ${oc.env:WANDB_PROJECT,llops}
+  name: ${name}
+  save_dir: ${oc.env:WANDB_DIR,${work_dir}/wandb}
+  mode: ${oc.env:WANDB_MODE,online}
+  id: ${oc.select:name} # pass correct id to resume experiment!
+  # entity: ""  # set to name of your wandb team or just remove it
+  log_model: False
+  prefix: ""
+  job_type: "train"
+  group: ""
+  tags: []

@@ -1,0 +1,63 @@
+# @package _global_
+# Paper reproduction, stage 1: BASED-360M -> degree-4 LLoPS.
+defaults:
+  - /experiment/pile/gpt3m-flash.yaml
+  - override /datamodule: slim6B
+
+name: llops-360m-stage1
+expt_name: ${name}
+resume: false
+test_after_training: false
+
+model:
+  _target_: based.models.gpt_unified.GPTSketchLMHeadModel
+  _recursive_: false
+  train_from_scratch: false
+  init_model_name: ${oc.env:INIT_MODEL_NAME,hazyresearch/based-360m}
+  power: 2
+  use_linear_term: false
+
+datamodule:
+  batch_size: 10
+  batch_size_eval: 32
+
+trainer:
+  devices: ${oc.env:NUM_GPUS,8}
+  num_nodes: ${oc.env:NUM_NODES,1}
+  accumulate_grad_batches: 2
+  max_epochs: 1000
+  max_steps: 18000
+  min_epochs: 0
+  val_check_interval: ${eval:1000 * ${.accumulate_grad_batches}}
+
+train:
+  optimizer:
+    _target_: torch.optim.AdamW
+    adam_w_mode: null
+    lr: 2.0e-4
+    betas: [0.9, 0.95]
+    eps: 1.0e-8
+    weight_decay: 0.1
+  scheduler:
+    _target_: train.optim.timm_lr_scheduler.TimmCosineLRScheduler
+    lr_min: 8.0e-5
+    warmup_t: 200
+    t_initial: 19800
+    t_in_epochs: false
+    warmup_prefix: true
+    warmup_lr_init: 1.0e-6
+
+callbacks:
+  model_checkpoint:
+    _target_: train.callbacks.model_checkpoint.ModelCheckpointMine
+    dirpath: ${oc.env:CHECKPOINT_DIR,${work_dir}/checkpoints}/${name}
+    every_n_train_steps: 1000
+    save_last: true
+    save_top_k: -1
+    filename: step_{step}
+    monitor: val/loss
+    mode: min
+    auto_insert_metric_name: false
+    save_hf: true
+
+logger: null
