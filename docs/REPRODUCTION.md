@@ -14,9 +14,7 @@ left unchanged.
 | 1B | `hazyresearch/based-1b` | degree 2 plus linear term | 2,000 | 1e-5 | 2 | 16 |
 
 The 360M result therefore follows two optimizer runs. Stage 2 intentionally
-restarts optimizer and scheduler state; it is not a Lightning resume. The
-released 1B recipe initializes directly from the public
-`hazyresearch/based-1b` checkpoint.
+restarts optimizer and scheduler state; it is not a Lightning resume.
 
 All runs used sequence length 2,048, AdamW (`betas=[0.9, 0.95]`, weight decay
 0.1), 200 warmup steps, and the SlimPajama-6B Hugging Face dataset.
@@ -39,7 +37,7 @@ export INIT_MODEL_NAME="$CHECKPOINT_DIR/llops-360m-stage1/step_18000-hf"
 scripts/train_continual.sh 360m-stage2
 ```
 
-Run 1B from the public BASED-1B initializer:
+Run 1B:
 
 ```bash
 unset INIT_MODEL_NAME

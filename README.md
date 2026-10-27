@@ -52,7 +52,7 @@ scripts/train_continual.sh 360m-stage1
 export INIT_MODEL_NAME="$CHECKPOINT_DIR/llops-360m-stage1/step_18000-hf"
 scripts/train_continual.sh 360m-stage2
 
-# 1B: initializes from the public hazyresearch/based-1b checkpoint
+# 1B
 unset INIT_MODEL_NAME
 scripts/train_continual.sh 1b
 ```
