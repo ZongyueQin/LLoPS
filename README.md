@@ -26,6 +26,13 @@ The central implementation is
 [`based/models/gpt_unified.py`](based/models/gpt_unified.py). The paper configs
 are under [`train/configs/experiment/llops/`](train/configs/experiment/llops/).
 
+## Checkpoints
+
+| Model | Hugging Face | Polynomial degree | Linear term |
+|---|---|---:|---:|
+| LLoPS-360M | [zongyueq/LLoPS-360M](https://huggingface.co/zongyueq/LLoPS-360M) | 4 | No |
+| LLoPS-1B | [zongyueq/LLoPS-1B](https://huggingface.co/zongyueq/LLoPS-1B) | 2 | Yes |
+
 ## Installation
 
 The recovered experiments used Python 3.10, PyTorch with ROCm, and AMD MI210

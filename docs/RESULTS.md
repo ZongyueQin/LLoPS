@@ -1,5 +1,8 @@
 # Recovered checkpoint results
 
+Published checkpoints: [LLoPS-360M](https://huggingface.co/zongyueq/LLoPS-360M)
+and [LLoPS-1B](https://huggingface.co/zongyueq/LLoPS-1B).
+
 These checkpoints were identified by running the repository's zero-shot suite.
 Values are percentages except LAMBADA perplexity, which is omitted here in
 favor of LAMBADA accuracy. Small differences from the paper are within the
